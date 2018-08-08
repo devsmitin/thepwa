@@ -3,6 +3,12 @@
 var CACHE = 'pwabuilder-precache';
 var precacheFiles = [
       /* Add an array of files to precache for your app */
+      'https://imsmit.github.io/thepwa/vendor/bootstrap/css/bootstrap.min.css',
+      'https://imsmit.github.io/thepwa/css/scrolling-nav.css',
+      'https://imsmit.github.io/thepwa/vendor/jquery/jquery.min.js',
+      'https://imsmit.github.io/thepwa/vendor/bootstrap/js/bootstrap.bundle.min.js',
+      'https://imsmit.github.io/thepwa/vendor/jquery-easing/jquery.easing.min.js',
+      'https://imsmit.github.io/thepwa/js/scrolling-nav.js'
     ];
 
 //Install stage sets up the cache-array to configure pre-cache content
