@@ -3,7 +3,7 @@
     "short_name": "Resume",
     "description": "Web Dev",
     "lang": "en-IN",
-    "start_url": "/",
+    "start_url": "https://imsmit.github.io/thepwa/",
     "display": "standalone",
     "theme_color": "#343a40",
     "background_color": "#343a40",
