@@ -3,7 +3,7 @@
     "short_name": "thepwa",
     "description": "a Progressive Web App Test page",
     "lang": "en-IN",
-    "start_url": "/",
+    "start_url": "/thepwa",
     "display": "standalone",
     "theme_color": "#343a40",
     "background_color": "#343a40",
