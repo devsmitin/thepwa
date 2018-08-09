@@ -1,9 +1,9 @@
 {
-    "name": "Smit's Web Resume",
-    "short_name": "Resume",
-    "description": "Web Dev",
+    "name": "The Progressive Web App Test",
+    "short_name": "thepwa",
+    "description": "a Progressive Web App Test page",
     "lang": "en-IN",
-    "start_url": "https://imsmit.github.io/thepwa/",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#343a40",
     "background_color": "#343a40",
