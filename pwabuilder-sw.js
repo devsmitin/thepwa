@@ -3,15 +3,13 @@
 var CACHE = "pwabuilderPrecache";
 var precacheFiles = [
     /* Add an array of files to precache for your app */
-    "/",
-    "/index.html",
-    "/vendor/bootstrap/css/bootstrap.min.css",
-    "/css/scrolling-nav.css",
-    "/vendor/jquery/jquery.min.js",
-    "/vendor/bootstrap/js/bootstrap.bundle.min.js",
-    "/vendor/jquery-easing/jquery.easing.min.js",
-    "/js/scrolling-nav.js",
-    "/manifest.json"
+    "index.html",
+    "vendor/bootstrap/css/bootstrap.min.css",
+    "css/style.css",
+    "vendor/jquery/jquery.min.js",
+    "vendor/bootstrap/js/bootstrap.bundle.min.js",
+    "vendor/jquery-easing/jquery.easing.min.js",
+    "js/main.js"
 ];
 
 //Install stage sets up the cache-array to configure pre-cache content
