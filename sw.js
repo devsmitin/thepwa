@@ -1,67 +1,34 @@
-//This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
-
-//Install stage sets up the offline page in the cache and opens a new cache
-self.addEventListener("install", function(event) {
-    event.waitUntil(preLoad());
-});
-
-var preLoad = function() {
-    console.log("[PWA Builder] Install Event processing");
-    return caches.open("pwabuilder-offline").then(function(cache) {
-        console.log(
-            "[PWA Builder] Cached index and offline page during Install"
-        );
-        return cache.addAll([
-            'index.html',
-            'vendor/bootstrap/css/bootstrap.min.css',
-            'css/style.css',
-            'vendor/jquery/jquery.min.js',
-            'vendor/bootstrap/js/bootstrap.bundle.min.js',
-            'vendor/jquery-easing/jquery.easing.min.js',
-            'js/main.js'
-        ]);
-    });
-};
-
-self.addEventListener("fetch", function(event) {
-    console.log("[PWA Builder] The service worker is serving the asset.");
-    event.respondWith(
-        checkResponse(event.request).catch(function() {
-            return returnFromCache(event.request);
+const version = "0.1";
+const cacheName = 'thepwa-${version}';
+self.addEventListener("install", e => {
+    const timeStamp = Date.now();
+    e.waitUntil(
+        caches.open(cacheName).then(cache => {
+            return cache
+                .addAll([
+                    'vendor/bootstrap/css/bootstrap.min.css',
+                    'vendor/jquery/jquery.min.js',
+                    'vendor/bootstrap/js/bootstrap.bundle.min.js',
+                    'vendor/jquery-easing/jquery.easing.min.js',
+                    'css/style.css',
+                    'js/main.js'
+                ])
+                .then(() => self.skipWaiting());
         })
     );
-    event.waitUntil(addToCache(event.request));
 });
 
-var checkResponse = function(request) {
-    return new Promise(function(fulfill, reject) {
-        fetch(request).then(function(response) {
-            if (response.status !== 404) {
-                fulfill(response);
-            } else {
-                reject();
-            }
-        }, reject);
-    });
-};
+self.addEventListener("activate", event => {
+    event.waitUntil(self.clients.claim());
+});
 
-var addToCache = function(request) {
-    return caches.open("pwabuilder-offline").then(function(cache) {
-        return fetch(request).then(function(response) {
-            console.log("[PWA Builder] add page to offline" + response.url);
-            return cache.put(request, response);
-        });
-    });
-};
-
-var returnFromCache = function(request) {
-    return caches.open("pwabuilder-offline").then(function(cache) {
-        return cache.match(request).then(function(matching) {
-            if (!matching || matching.status == 404) {
-                return cache.match("offline.html");
-            } else {
-                return matching;
-            }
-        });
-    });
-};
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches
+            .open(cacheName)
+            .then(cache => cache.match(event.request, { ignoreSearch: true }))
+            .then(response => {
+                return response || fetch(event.request);
+            })
+    );
+});
