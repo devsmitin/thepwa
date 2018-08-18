@@ -2,23 +2,18 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <title>The PWA - A test page for Progressive Web App</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A simple page, to check and play with PWA development">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="imsmit">
-
     <link rel="canonical" href="https://imsmit.github.io/thepwa/">
     <link rel="manifest" href="manifest.json">
-
     <meta name="theme-color" content="#343a40">
-
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="The PWA">
-
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
@@ -34,36 +29,32 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#343a40">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="css/style.css" rel="stylesheet">
-
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(function (registration) {
-                    console.log('Service Worker Registered');
-                });
-
-            navigator.serviceWorker.ready.then(function (registration) {
-                console.log('Service Worker Ready');
+    window.addEventListener('load', function() {
+        var csss = document.querySelectorAll('[rel="preload"]')
+        csss.forEach(function(css) {
+            css.setAttribute('rel', 'stylesheet');
+        });
+    });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('Service Worker Registered');
             });
-        }
-    </script>
 
+        navigator.serviceWorker.ready.then(function(registration) {
+            console.log('Service Worker Ready');
+        });
+    }
+    </script>
 </head>
 
 <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">A Progressive Web App</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -75,14 +66,12 @@
             </div>
         </div>
     </nav>
-
     <header class="bg-gradient text-white">
         <div class="container text-center">
             <h1>A Progressive Web App</h1>
             <p class="lead">This is a Progressive Web App test page</p>
         </div>
     </header>
-
     <section id="about">
         <div class="container">
             <div class="row">
@@ -106,17 +95,17 @@
         </div>
         <!-- /.container -->
     </footer>
-
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="preload">
+    <!-- Custom styles for this page -->
+    <link href="css/style.css" rel="preload">
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom JavaScript for this page -->
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
