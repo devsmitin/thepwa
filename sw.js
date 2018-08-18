@@ -1,6 +1,6 @@
 //This is the service worker with the Cache-first network
 
-const version = "0.1";
+const version = "0.2";
 const CACHE = 'thepwa-${version}';
 
 var precacheFiles = [
