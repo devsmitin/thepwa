@@ -1,5 +1,14 @@
-const version = "0.1";
+const version = "0.13";
 const cacheName = 'thepwa-${version}';
+
+var update = function (request) {
+    return caches.open(cacheName).then(function (cache) {
+        return fetch(request).then(function (response) {
+            return cache.put(request, response);
+        });
+    });
+}
+
 self.addEventListener("install", e => {
     const timeStamp = Date.now();
     e.waitUntil(
@@ -10,8 +19,7 @@ self.addEventListener("install", e => {
                     'vendor/jquery/jquery.min.js',
                     'vendor/bootstrap/js/bootstrap.bundle.min.js',
                     'vendor/jquery-easing/jquery.easing.min.js',
-                    'css/style.css',
-                    'js/main.js'
+                    'fonts/DancingScript-Regular.ttf'
                 ])
                 .then(() => self.skipWaiting());
         })
