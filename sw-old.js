@@ -1,5 +1,5 @@
-var version = "0.15";
-var cache_name = 'thepwa-${version}';
+const version = "0.14";
+const cacheName = 'thepwa-${version}';
 
 var urlsToCache = [
     'vendor/bootstrap/css/bootstrap.min.css',
@@ -50,7 +50,7 @@ self.addEventListener('fetch', function (event) {
                         // to clone it so we have two streams.
                         var responseToCache = response.clone();
 
-                        caches.open(cache_name)
+                        caches.open(CACHE_NAME)
                             .then(function (cache) {
                                 cache.put(event.request, responseToCache);
                             });
